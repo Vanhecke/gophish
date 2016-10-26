@@ -6,15 +6,15 @@
 		"key_path" : "example.key"
 	},
 	"phish_server" : {
-		"listen_url" : "0.0.0.0:80",
+		"listen_url" : "127.0.0.1:3334",
 		"use_tls" : false,
 		"cert_path" : "example.crt",
 		"key_path": "example.key"
 	},
 	"smtp" : {
-		"host" : "smtp.example.com:25",
-		"user" : "username",
-		"pass" : "password"
+		"host" : "127.0.0.1:25",
+		"user" : "",
+		"pass" : ""
 	},
 	"db_name" : "mysql",
 	"db_path" : "gophish:gophish@(127.0.0.1:3306)/gophish?charset=utf8&parseTime=True&loc=Local",
