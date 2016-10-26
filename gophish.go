@@ -33,10 +33,10 @@ import (
 	"sync"
 
 	"github.com/NYTimes/gziphandler"
-	"github.com/gophish/gophish/auth"
-	"github.com/gophish/gophish/config"
-	"github.com/gophish/gophish/controllers"
-	"github.com/gophish/gophish/models"
+	"github.com/gophish/Vanhecke/auth"
+	"github.com/gophish/Vanhecke/config"
+	"github.com/gophish/Vanhecke/controllers"
+	"github.com/gophish/Vanhecke/models"
 	"github.com/gorilla/handlers"
 )
 

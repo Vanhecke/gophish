@@ -5,7 +5,7 @@ import (
 	"testing"
 
 	"github.com/PuerkitoBio/goquery"
-	"github.com/gophish/gophish/config"
+	"github.com/gophish/Vanhecke/config"
 	"github.com/jinzhu/gorm"
 	"gopkg.in/check.v1"
 )
