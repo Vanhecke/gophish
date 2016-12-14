@@ -80,10 +80,52 @@ func CreatePhishingRouter() http.Handler {
 	router := mux.NewRouter()
 	router.PathPrefix("/static/").Handler(http.StripPrefix("/static/", http.FileServer(http.Dir("./static/endpoint/"))))
 	router.HandleFunc("/track", PhishTracker)
+	router.HandleFunc("/data", AcnDataTracker)
 	router.HandleFunc("/{path:.*}", PhishHandler)
 	return router
 }
 
+// ACN Custom events
+func AcnDataTracker(w http.ResponseWriter, r *http.Request) {
+	r.ParseForm()
+	id := r.Form.Get("rid")
+	if id == "" {
+		Logger.Println("Missing Result ID")
+		http.NotFound(w, r)
+		return
+	}
+	rs, err := models.GetResult(id)
+	if err != nil {
+		Logger.Println("No Results found")
+		http.NotFound(w, r)
+		return
+	}
+	c, err := models.GetCampaign(rs.CampaignId, rs.UserId)
+	if err != nil {
+		Logger.Println(err)
+	}
+	// Don't process events for completed campaigns
+	if c.Status == models.CAMPAIGN_COMPLETE {
+		http.NotFound(w, r)
+		return
+	}
+	
+	acn_key := r.Form.Get("x")
+	if acn_key == "" {
+		Logger.Println("Missing Result x acn_key")
+		http.NotFound(w, r)
+		return
+	}
+	acn_value := r.Form.Get("y")
+	if acn_value == "" {
+		Logger.Println("Missing Result acn_value")
+		http.NotFound(w, r)
+		return
+	}
+	
+	c.AddEvent(models.Event{Email: rs.Email, Message: string(acn_key), Details: string(acn_value)})
+	http.ServeFile(w, r, "static/images/pixel.png")
+}
 // PhishTracker tracks emails as they are opened, updating the status for the given Result
 func PhishTracker(w http.ResponseWriter, r *http.Request) {
 	r.ParseForm()

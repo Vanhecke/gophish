@@ -36,7 +36,7 @@ import (
 	"github.com/NYTimes/gziphandler"
 	"github.com/gophish/gophish/auth"
 	"github.com/gophish/gophish/config"
-	"github.com/gophish/gophish/controllers"
+	"github.com/Vanhecke/gophish/controllers"
 	"github.com/gophish/gophish/models"
 	"github.com/gophish/gophish/util"
 	"github.com/gorilla/handlers"
