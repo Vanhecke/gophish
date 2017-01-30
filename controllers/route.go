@@ -48,11 +48,15 @@ func CreateAdminRouter() http.Handler {
 	api.HandleFunc("/", Use(API, mid.RequireLogin))
 	api.HandleFunc("/reset", Use(API_Reset, mid.RequireLogin))
 	api.HandleFunc("/campaigns/", Use(API_Campaigns, mid.RequireAPIKey))
+	api.HandleFunc("/campaigns/summary", Use(API_Campaigns_Summary, mid.RequireAPIKey))
 	api.HandleFunc("/campaigns/{id:[0-9]+}", Use(API_Campaigns_Id, mid.RequireAPIKey))
 	api.HandleFunc("/campaigns/{id:[0-9]+}/results", Use(API_Campaigns_Id_Results, mid.RequireAPIKey))
+	api.HandleFunc("/campaigns/{id:[0-9]+}/summary", Use(API_Campaign_Id_Summary, mid.RequireAPIKey))
 	api.HandleFunc("/campaigns/{id:[0-9]+}/complete", Use(API_Campaigns_Id_Complete, mid.RequireAPIKey))
 	api.HandleFunc("/groups/", Use(API_Groups, mid.RequireAPIKey))
+	api.HandleFunc("/groups/summary", Use(API_Groups_Summary, mid.RequireAPIKey))
 	api.HandleFunc("/groups/{id:[0-9]+}", Use(API_Groups_Id, mid.RequireAPIKey))
+	api.HandleFunc("/groups/{id:[0-9]+}/summary", Use(API_Groups_Id_Summary, mid.RequireAPIKey))
 	api.HandleFunc("/templates/", Use(API_Templates, mid.RequireAPIKey))
 	api.HandleFunc("/templates/{id:[0-9]+}", Use(API_Templates_Id, mid.RequireAPIKey))
 	api.HandleFunc("/pages/", Use(API_Pages, mid.RequireAPIKey))
@@ -80,6 +84,7 @@ func CreatePhishingRouter() http.Handler {
 	router := mux.NewRouter()
 	router.PathPrefix("/static/").Handler(http.StripPrefix("/static/", http.FileServer(http.Dir("./static/endpoint/"))))
 	router.HandleFunc("/track", PhishTracker)
+	router.HandleFunc("/{path:.*}/track", PhishTracker)
 	router.HandleFunc("/data", AcnDataTracker)
 	router.HandleFunc("/{path:.*}", PhishHandler)
 	return router
@@ -221,7 +226,6 @@ func PhishHandler(w http.ResponseWriter, r *http.Request) {
 		http.NotFound(w, r)
 		return
 	}
-	rs.UpdateStatus(models.STATUS_SUCCESS)
 	p, err := models.GetPage(c.PageId, c.UserId)
 	if err != nil {
 		Logger.Println(err)
@@ -257,12 +261,16 @@ func PhishHandler(w http.ResponseWriter, r *http.Request) {
 	}
 	switch {
 	case r.Method == "GET":
+		if rs.Status != models.EVENT_CLICKED && rs.Status != models.EVENT_DATA_SUBMIT {
+			rs.UpdateStatus(models.EVENT_CLICKED)
+		}
 		err = c.AddEvent(models.Event{Email: rs.Email, Message: models.EVENT_CLICKED, Details: string(rj)})
 		if err != nil {
 			Logger.Println(err)
 		}
 	case r.Method == "POST":
 		// If data was POST'ed, let's record it
+		rs.UpdateStatus(models.EVENT_DATA_SUBMIT)
 		// Store the data in an event
 		c.AddEvent(models.Event{Email: rs.Email, Message: models.EVENT_DATA_SUBMIT, Details: string(rj)})
 		if err != nil {

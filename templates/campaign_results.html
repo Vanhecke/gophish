@@ -18,7 +18,7 @@
                 <li><a href="/settings">Settings</a>
                 </li>
                 <li><hr></li>
-                <li><a href="https://github.com/gophish/gophish/wiki">User Guide</a>
+                <li><a href="https://gophish.gitbooks.io/user-guide/content/">User Guide</a>
                 </li>
                 <li><a href="/api/">API Documentation</a>
                 </li>
@@ -121,12 +121,5 @@
 </div>
 {{end}}
 {{define "scripts"}}
-<script src="/js/jquery.ui.widget.js"></script>
-<!-- d3, topojson, and datamaps for mapping -->
-<script src="/js/d3.min.js"></script>
-<script src="/js/topojson.min.js"></script>
-<script src="/js/datamaps.min.js"></script>
-<script src="/js/papaparse.min.js"></script>
-<script src="/js/sweetalert2.min.js"></script>
-<script src="/js/app/campaign_results.js"></script>
+<script src="/js/dist/app/campaign_results.min.js"></script>
 {{end}}
