@@ -9,8 +9,8 @@ import (
 	"os"
 	"testing"
 
-	"github.com/vanhecke/gophish/config"
-	"github.com/vanhecke/gophish/models"
+	"github.com/Vanhecke/gophish/config"
+	"github.com/Vanhecke/gophish/models"
 	"github.com/gorilla/handlers"
 	"github.com/stretchr/testify/suite"
 )
