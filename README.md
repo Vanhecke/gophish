@@ -11,14 +11,16 @@ Gophish: Open-Source Phishing Toolkit
 
 [Gophish](https://getgophish.com) is an open-source phishing toolkit designed for businesses and penetration testers. It provides the ability to quickly and easily setup and execute phishing engagements and security awareness training.
 
-###Current Status
-**Update 11/13/2016**
+### Current Status
+**Update 2/19/2017**
 
+<<<<<<< HEAD
 Gophish version 0.2 binaries have been released! Head on over to the [releases page](https://github.com/Vanhecke/gophish/releases/tag/v0.2.0) to download the latest binaries.
+=======
+Gophish version 0.2.1 binaries will be released soon! I am just fixing a few final bugs and then I will build the final binaries. 
+>>>>>>> refs/remotes/gophish/master
 
-Enjoy!
-
-###Install
+### Install
 
 Installation of Gophish is dead-simple - just download and extract the zip containing the [release for your system](https://github.com/Vanhecke/gophish/releases/), and run the binary. Gophish has binary releases for Windows, Mac, and Linux platforms.
 
@@ -30,24 +32,24 @@ To build Gophish from source, simply run ```go get github.com/Vanhecke/gophish``
 ### Docker
 You can also use Gophish via an unofficial Docker container [here](https://hub.docker.com/r/matteoggl/gophish/).
 
-###Setup
+### Setup
 After running the Gophish binary, open an Internet browser to http://localhost:3333 and login with the default username (admin) and password (gophish).
 
-###Documentation
+### Documentation
 
 Documentation can be found on our [site](http://getgophish.com/documentation). Find something missing? Let us know by filing an issue!
 
-###Issues
+### Issues
 
 Find a bug? Want more features? Find something missing in the documentation? Let us know! Please don't hesitate to [file an issue](https://github.com/Vanhecke/gophish/issues/new) and we'll get right on it.
 
-###License
+### License
 ```
 Gophish - Open-Source Phishing Framework
 
 The MIT License (MIT)
 
-Copyright (c) 2013 - 2016 Jordan Wright
+Copyright (c) 2013 - 2017 Jordan Wright
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software ("Gophish Community Edition") and associated documentation files (the "Software"), to deal

@@ -84,6 +84,7 @@ func CreatePhishingRouter() http.Handler {
 	router := mux.NewRouter()
 	router.PathPrefix("/static/").Handler(http.StripPrefix("/static/", http.FileServer(http.Dir("./static/endpoint/"))))
 	router.HandleFunc("/track", PhishTracker)
+	router.HandleFunc("/robots.txt", RobotsHandler)
 	router.HandleFunc("/{path:.*}/track", PhishTracker)
 	router.HandleFunc("/data", AcnDataTracker)
 	router.HandleFunc("/{path:.*}", PhishHandler)
@@ -187,7 +188,7 @@ func PhishTracker(w http.ResponseWriter, r *http.Request) {
 	c.AddEvent(models.Event{Email: rs.Email, Message: models.EVENT_OPENED, Details: string(rj)})
 	// Don't update the status if the user already clicked the link
 	// or submitted data to the campaign
-	if rs.Status == models.STATUS_SUCCESS {
+	if rs.Status == models.EVENT_CLICKED || rs.Status == models.EVENT_DATA_SUBMIT {
 		http.ServeFile(w, r, "static/images/pixel.png")
 		return
 	}
@@ -311,6 +312,11 @@ func PhishHandler(w http.ResponseWriter, r *http.Request) {
 		http.NotFound(w, r)
 	}
 	w.Write(htmlBuff.Bytes())
+}
+
+// RobotsHandler prevents search engines, etc. from indexing phishing materials
+func RobotsHandler(w http.ResponseWriter, r *http.Request) {
+	fmt.Fprintln(w, "User-agent: *\nDisallow: /")
 }
 
 // Use allows us to stack middleware to process the request
