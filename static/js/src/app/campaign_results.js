@@ -686,7 +686,7 @@ function refresh() {
     $("#refresh_btn").hide()
     poll()
     clearTimeout(setRefresh)
-    setRefresh = setTimeout(refresh, 60000)
+    setRefresh = setTimeout(refresh, 600000)
 };
 
 
@@ -696,5 +696,5 @@ $(document).ready(function() {
     // Start the polling loop
     
     // Start the polling loop
-    setRefresh = setTimeout(refresh, 60000)
+    setRefresh = setTimeout(refresh, 600000)
 })
