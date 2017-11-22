@@ -3,14 +3,19 @@
 Gophish
 =======
 
+<<<<<<< HEAD
 [![Join the chat at https://gitter.im/gophish/gophish](https://badges.gitter.im/gophish/gophish.svg)](https://gitter.im/gophish/gophish?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 
 [![Build Status](https://travis-ci.org/gophish/gophish.svg?branch=master)](https://travis-ci.org/gophish/gophish) [![GoDoc](https://godoc.org/github.com/Vanhecke/gophish?status.svg)](https://godoc.org/github.com/Vanhecke/gophish)
+=======
+[![Build Status](https://travis-ci.org/gophish/gophish.svg?branch=master)](https://travis-ci.org/gophish/gophish) [![GoDoc](https://godoc.org/github.com/gophish/gophish?status.svg)](https://godoc.org/github.com/gophish/gophish)
+>>>>>>> pr/4
 
 Gophish: Open-Source Phishing Toolkit
 
 [Gophish](https://getgophish.com) is an open-source phishing toolkit designed for businesses and penetration testers. It provides the ability to quickly and easily setup and execute phishing engagements and security awareness training.
 
+<<<<<<< HEAD
 ### Current Status
 **Update 2/19/2017**
 
@@ -20,6 +25,8 @@ Gophish version 0.2 binaries have been released! Head on over to the [releases p
 Gophish version 0.2.1 binaries will be released soon! I am just fixing a few final bugs and then I will build the final binaries. 
 >>>>>>> refs/remotes/gophish/master
 
+=======
+>>>>>>> pr/4
 ### Install
 
 Installation of Gophish is dead-simple - just download and extract the zip containing the [release for your system](https://github.com/Vanhecke/gophish/releases/), and run the binary. Gophish has binary releases for Windows, Mac, and Linux platforms.

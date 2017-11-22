@@ -26,12 +26,15 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
 */
 import (
+	"io/ioutil"
 	"compress/gzip"
 	"fmt"
 	"log"
 	"net/http"
 	"os"
 	"sync"
+
+	"gopkg.in/alecthomas/kingpin.v2"
 
 	"github.com/NYTimes/gziphandler"
 	"github.com/Vanhecke/gophish/auth"
@@ -42,11 +45,29 @@ import (
 	"github.com/gorilla/handlers"
 )
 
-var Logger = log.New(os.Stdout, " ", log.Ldate|log.Ltime|log.Lshortfile)
+var (
+	Logger = log.New(os.Stdout, " ", log.Ldate|log.Ltime|log.Lshortfile)
+
+	configPath = kingpin.Flag("config", "Location of config.json.").Default("./config.json").String()
+)
 
 func main() {
+	// Load the version
+	version, err := ioutil.ReadFile("./VERSION")
+	if err != nil {
+		Logger.Fatalln(err)
+	}
+	kingpin.Version(string(version))
+
+	// Parse the CLI flags and load the config
+	kingpin.CommandLine.HelpFlag.Short('h')
+	kingpin.Parse()
+
+	// Load the config
+	config.LoadConfig(*configPath)
+	config.Version = string(version)
 	// Setup the global variables and settings
-	err := models.Setup()
+	err = models.Setup()
 	if err != nil {
 		fmt.Println(err)
 	}

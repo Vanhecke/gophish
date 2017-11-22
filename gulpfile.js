@@ -5,11 +5,9 @@
  */
 
 var gulp = require('gulp'),
-    jshint = require('gulp-jshint'),
     rename = require('gulp-rename'),
     concat = require('gulp-concat'),
     uglify = require('gulp-uglify'),
-    wrap = require('gulp-wrap'),
     cleanCSS = require('gulp-clean-css'),
 
     js_directory = 'static/js/src/',
@@ -19,17 +17,9 @@ var gulp = require('gulp'),
     dest_js_directory = 'static/js/dist/',
     dest_css_directory = 'static/css/dist/';
 
-gulp.task('default', ['watch']);
-
-gulp.task('jshint', function() {
-    return gulp.src(js_directory)
-        .pipe(jshint())
-        .pipe(jshint.reporter('jshint-stylish'));
-});
-
-gulp.task('build', function() {
+gulp.task('vendorjs', function () {
     // Vendor minifying / concat
-    gulp.src([
+    return gulp.src([
             vendor_directory + 'jquery.js',
             vendor_directory + 'bootstrap.min.js',
             vendor_directory + 'moment.min.js',
@@ -46,7 +36,9 @@ gulp.task('build', function() {
             vendor_directory + 'jquery.iframe-transport.js',
             vendor_directory + 'sweetalert2.min.js',
             vendor_directory + 'bootstrap-datetime.js',
-            vendor_directory + 'select2.min.js'
+            vendor_directory + 'select2.min.js',
+            vendor_directory + 'core.min.js',
+            vendor_directory + 'highcharts.js'
         ])
         .pipe(concat('vendor.js'))
         .pipe(rename({
@@ -54,15 +46,21 @@ gulp.task('build', function() {
         }))
         .pipe(uglify())
         .pipe(gulp.dest(dest_js_directory));
+})
 
+gulp.task('scripts', function () {
     // Gophish app files
     gulp.src(app_directory)
         .pipe(rename({
             suffix: '.min'
         }))
-        .pipe(uglify())
+        .pipe(uglify().on('error', function (e) {
+            console.log(e);
+        }))
         .pipe(gulp.dest(dest_js_directory + 'app/'));
+})
 
+gulp.task('styles', function () {
     return gulp.src([
             css_directory + 'bootstrap.min.css',
             css_directory + 'main.css',
@@ -75,13 +73,15 @@ gulp.task('build', function() {
             css_directory + 'checkbox.css',
             css_directory + 'sweetalert2.min.css',
             css_directory + 'select2.min.css',
-            css_directory + 'select2-bootstrap.min.css'
+            css_directory + 'select2-bootstrap.min.css',
         ])
-        .pipe(cleanCSS({compatibilty: 'ie9'}))
+        .pipe(cleanCSS({
+            compatibilty: 'ie9'
+        }))
         .pipe(concat('gophish.css'))
         .pipe(gulp.dest(dest_css_directory));
-});
+})
 
-gulp.task('watch', function() {
-    gulp.watch('static/js/src/app/**/*.js', ['jshint']);
-});
+gulp.task('build', ['vendorjs', 'scripts', 'styles']);
+
+gulp.task('default', ['build']);
