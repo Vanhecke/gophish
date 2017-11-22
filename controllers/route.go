@@ -1,17 +1,11 @@
 package controllers
 
 import (
-	"bytes"
-	"encoding/json"
 	"fmt"
 	"html/template"
 	"log"
-	"net"
 	"net/http"
-	"net/mail"
-	"net/url"
 	"os"
-	"strings"
 
 	"github.com/Vanhecke/gophish/auth"
 	"github.com/Vanhecke/gophish/config"
@@ -79,6 +73,7 @@ func CreateAdminRouter() http.Handler {
 	return Use(csrfRouter.ServeHTTP, mid.CSRFExceptions, mid.GetContext)
 }
 
+<<<<<<< HEAD
 // CreatePhishingRouter creates the router that handles phishing connections.
 func CreatePhishingRouter() http.Handler {
 	router := mux.NewRouter()
@@ -319,6 +314,8 @@ func RobotsHandler(w http.ResponseWriter, r *http.Request) {
 	fmt.Fprintln(w, "User-agent: *\nDisallow: /")
 }
 
+=======
+>>>>>>> pr/4
 // Use allows us to stack middleware to process the request
 // Example taken from https://github.com/gorilla/mux/pull/36#issuecomment-25849172
 func Use(handler http.HandlerFunc, mid ...func(http.Handler) http.HandlerFunc) http.HandlerFunc {
