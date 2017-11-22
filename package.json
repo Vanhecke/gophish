@@ -3,12 +3,12 @@
   "version": "0.4.0-dev",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Vanhecke/gophish.git"
+    "url": "git+https://github.com/vanhecke/gophish.git"
   },
   "author": "Jordan Wright",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/Vanhecke/gophish/issues"
+    "url": "https://github.com/vanhecke/gophish/issues"
   },
   "homepage": "https://getgophish.com",
   "devDependencies": {

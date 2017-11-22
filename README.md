@@ -1,4 +1,4 @@
-![gophish logo](https://raw.github.com/Vanhecke/gophish/master/static/images/gophish_purple.png)
+![gophish logo](https://raw.github.com/vanhecke/gophish/master/static/images/gophish_purple.png)
 
 Gophish
 =======
@@ -6,7 +6,7 @@ Gophish
 <<<<<<< HEAD
 [![Join the chat at https://gitter.im/gophish/gophish](https://badges.gitter.im/gophish/gophish.svg)](https://gitter.im/gophish/gophish?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 
-[![Build Status](https://travis-ci.org/gophish/gophish.svg?branch=master)](https://travis-ci.org/gophish/gophish) [![GoDoc](https://godoc.org/github.com/Vanhecke/gophish?status.svg)](https://godoc.org/github.com/Vanhecke/gophish)
+[![Build Status](https://travis-ci.org/gophish/gophish.svg?branch=master)](https://travis-ci.org/gophish/gophish) [![GoDoc](https://godoc.org/github.com/vanhecke/gophish?status.svg)](https://godoc.org/github.com/vanhecke/gophish)
 =======
 [![Build Status](https://travis-ci.org/gophish/gophish.svg?branch=master)](https://travis-ci.org/gophish/gophish) [![GoDoc](https://godoc.org/github.com/gophish/gophish?status.svg)](https://godoc.org/github.com/gophish/gophish)
 >>>>>>> pr/4
@@ -20,7 +20,7 @@ Gophish: Open-Source Phishing Toolkit
 **Update 2/19/2017**
 
 <<<<<<< HEAD
-Gophish version 0.2 binaries have been released! Head on over to the [releases page](https://github.com/Vanhecke/gophish/releases/tag/v0.2.0) to download the latest binaries.
+Gophish version 0.2 binaries have been released! Head on over to the [releases page](https://github.com/vanhecke/gophish/releases/tag/v0.2.0) to download the latest binaries.
 =======
 Gophish version 0.2.1 binaries will be released soon! I am just fixing a few final bugs and then I will build the final binaries. 
 >>>>>>> refs/remotes/gophish/master
@@ -29,12 +29,12 @@ Gophish version 0.2.1 binaries will be released soon! I am just fixing a few fin
 >>>>>>> pr/4
 ### Install
 
-Installation of Gophish is dead-simple - just download and extract the zip containing the [release for your system](https://github.com/Vanhecke/gophish/releases/), and run the binary. Gophish has binary releases for Windows, Mac, and Linux platforms.
+Installation of Gophish is dead-simple - just download and extract the zip containing the [release for your system](https://github.com/vanhecke/gophish/releases/), and run the binary. Gophish has binary releases for Windows, Mac, and Linux platforms.
 
 ### Building From Source
 **If you are building from source, please note that Gophish requires Go v1.5 or above!**
 
-To build Gophish from source, simply run ```go get github.com/Vanhecke/gophish``` and ```cd``` into the project source directory. Then, run ```go build```. After this, you should have a binary called ```gophish``` in the current directory.
+To build Gophish from source, simply run ```go get github.com/vanhecke/gophish``` and ```cd``` into the project source directory. Then, run ```go build```. After this, you should have a binary called ```gophish``` in the current directory.
 
 ### Docker
 You can also use Gophish via an unofficial Docker container [here](https://hub.docker.com/r/matteoggl/gophish/).
@@ -48,7 +48,7 @@ Documentation can be found on our [site](http://getgophish.com/documentation). F
 
 ### Issues
 
-Find a bug? Want more features? Find something missing in the documentation? Let us know! Please don't hesitate to [file an issue](https://github.com/Vanhecke/gophish/issues/new) and we'll get right on it.
+Find a bug? Want more features? Find something missing in the documentation? Let us know! Please don't hesitate to [file an issue](https://github.com/vanhecke/gophish/issues/new) and we'll get right on it.
 
 ### License
 ```

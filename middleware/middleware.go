@@ -6,9 +6,9 @@ import (
 	"net/http"
 	"strings"
 
-	"github.com/Vanhecke/gophish/auth"
-	ctx "github.com/Vanhecke/gophish/context"
-	"github.com/Vanhecke/gophish/models"
+	"github.com/vanhecke/gophish/auth"
+	ctx "github.com/vanhecke/gophish/context"
+	"github.com/vanhecke/gophish/models"
 	"github.com/gorilla/csrf"
 )
 
